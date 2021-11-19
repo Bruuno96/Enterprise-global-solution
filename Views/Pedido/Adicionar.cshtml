@@ -1,0 +1,52 @@
+﻿@model Pedido
+
+@{
+    ViewData["Title"] = "Pedido";
+}
+
+<h1>Pedido: @Model.PedidoId </h1>
+
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Data Pedido</th>
+        <th>Valor</th>
+        <th>Desconto</th>
+        <th>Forma de Pagamento</th>
+    </tr>
+    <tr>
+        <td>@Model.Business?.Nome</td>
+        <td>@Model.DataPedido</td>
+    </tr>
+</table>
+
+<hr />
+<h2>Produtos</h2>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<form asp-action="adicionar" class="form-inline mb-3">
+    <input type="hidden" name="pedidoId" value="@Model.PedidoId" />
+    <select class="form-control mr-2" name="produtoId" asp-items="@ViewBag.produtosSelect">
+        <option>Selecione</option>
+    </select>
+    <input type="submit" value="Adicionar" class="btn btn-success" />
+</form>
+
+<table class="table">
+    <tr>
+        <th>Nome</th>
+        <th>Valor</th>
+        <th>Descrição</th>
+    </tr>
+    @foreach (var item in ViewBag.produtos)
+    {
+        <tr>
+            <td>@item.Nome</td>
+            <td>@item.Valor</td>
+            <td>@item.Descricao</td>
+        </tr>
+    }
+</table>
+
+<a asp-action="index" class="btn btn-primary">Finalizar</a>

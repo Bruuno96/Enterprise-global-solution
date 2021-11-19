@@ -1,0 +1,33 @@
+﻿@model IList<Pedido>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Pedidos</h1>
+
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<a asp-action="cadastrar">Cadastrar</a>
+
+<table class="table">
+    <tr>
+        <th>Cliente</th>
+        <th>Data Pedido</th>
+        <th>Valor</th>
+        <th>Desconto</th>
+        <th>Forma de Pagamento</th>
+        <th></th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Business.Nome</td>
+            <td>@item.DataPedido</td>
+            <td>
+                <a asp-action="Adicionar" asp-route-id="@item.PedidoId">Adicionar Itens</a>
+            </td>
+        </tr>
+    }
+</table>
+

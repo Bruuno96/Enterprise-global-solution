@@ -1,0 +1,12 @@
+﻿@model Pedido
+
+<div class="form-group">
+    <label asp-for="Business"></label>
+    <select asp-for="BusinessId" class="form-control" asp-items="@ViewBag.clientes">
+        <option>Selecione</option>
+    </select>
+</div>
+<div class="form-group">
+    <label asp-for="DataPedido"></label>
+    <input asp-for="DataPedido" class="form-control" />
+</div>

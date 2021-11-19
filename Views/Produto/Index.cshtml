@@ -1,0 +1,53 @@
+﻿@model ProdutoViewModel
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Produtos</h1>
+<hr />
+<mensagem texto="@TempData["msg"]"></mensagem>
+
+<div class="row">
+    <div class="col-md-6">
+        <h2>Cadastro de Produto</h2>
+        <form asp-action="cadastrar">
+            <div class="form-group">
+                <label asp-for="Produto.Nome"></label>
+                <input asp-for="Produto.Nome" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Produto.Valor"></label>
+                <input asp-for="Produto.Valor" class="form-control" />
+            </div>
+            <div class="form-group">
+                <input asp-for  ="Produto.Disponivel" />
+                <label asp-for="Produto.Disponivel"></label>
+            </div>
+            <div class="form-group">
+                <label asp-for="Produto.Descricao"></label>
+                <textarea asp-for="Produto.Descricao" class="form-control"></textarea>
+            </div>
+            <input type="submit" value="Cadastrar" class="btn btn-primary" />
+        </form>
+    </div>
+    <div class="col-md-6">
+        <h2>Lista de Produtos</h2>
+        <table class="table">
+            <tr>
+                <th>Nome</th>
+                <th>Valor</th>
+                <th>Disponível</th>
+            </tr>
+            @foreach (var item in Model.Lista)
+            {
+                <tr>
+                    <td>@item.Nome</td>
+                    <td>@item.Valor</td>
+                    <td>@(item.Disponivel?"Sim":"Não")</td>
+                </tr>
+            }
+        </table>
+    </div>
+</div>
+
